@@ -66,7 +66,7 @@ I tried various combinations of parameters and toyed with orientation, pixels pe
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using spatial binning, color histograms, and HOG. In Step 5 I extracted features from the data (split into train and test sets) and I scaled and trained them.   
+I trained a linear SVM using spatial binning, and HOG. In Step 5 I extracted features from the data (split into train and test sets) and I scaled and trained them.   
 
 ![alt text][image14]
 ![alt text][image1]
@@ -81,7 +81,7 @@ In Step 7 I implemented sliding window search. I played around with different sc
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using LUV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color in the feature vector, which provided a nice result.  Here are some example images:
 
 ![alt text][image17]
 ---
