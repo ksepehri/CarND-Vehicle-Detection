@@ -1,2 +1,6 @@
 /non-vehicles
 /vehicles
+/output_images
+/test_videos_output
+.DS_Store
+
