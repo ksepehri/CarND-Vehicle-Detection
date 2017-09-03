@@ -1,8 +1,3 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
 **Vehicle Detection Project**
 
 The goals / steps of this project are the following:
@@ -28,8 +23,10 @@ The goals / steps of this project are the following:
 [image10]: ./writeup_media/test_image_with_windows2.png
 [image11]: ./writeup_media/test_images_heat_maps_threshold.png
 [image12]: ./writeup_media/test_images_heat_maps.png
-[image13]: ./writeup_media/time_images_heat_threshold_combo.png
+[image13]: ./writeup_media/time_images_heat_threshold_combo2.png
 [image14]: ./writeup_media/spatial_bin.png
+[image15]: ./writeup_media/labels_result.png
+[image16]: ./writeup_media/last_frame.png
 
 [imageX]: ./writeup_media/.png
 
@@ -44,9 +41,9 @@ The goals / steps of this project are the following:
 
 You're reading it!
 
-###Histogram of Oriented Gradients (HOG)
+### Histogram of Oriented Gradients (HOG)
 
-####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
+#### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
 The code for this step is contained in Step 3 of the IPython notebook (`vehicle_detection.ipynb`).  
 
@@ -62,25 +59,25 @@ Here is an example using the `RGB` color space and HOG parameters of `orientatio
 ![alt text][image3]
 ![alt text][image6]
 
-####2. Explain how you settled on your final choice of HOG parameters.
+#### 2. Explain how you settled on your final choice of HOG parameters.
 
 I tried various combinations of parameters and toyed with orientation, pixels per cell, and cells per block until i found what worked best.
 
-####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 I trained a linear SVM using spatial binning, color histograms, and HOG. In Step 5 I extracted features from the data (split into train and test sets) and I scaled and trained them.   
 
 ![alt text][image14]
 
-###Sliding Window Search
+### Sliding Window Search
 
-####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+#### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 In Step 7 I implemented sliding window search. I played around with different scales and overlapping. I found 64, 96, 128 to be the best window sizes and set up the areas of the image to search accordingly (lower half of the image). 
 
 ![alt text][image8]
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
@@ -89,11 +86,11 @@ Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spat
 
 ### Video Implementation
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video 
-Here's a [link to my video result](./project_video.mp4)
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video 
+Here's a [link to my video result](./project_output.mp4)
 
 
-####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+#### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
@@ -101,25 +98,24 @@ I then applied thresholding to the heatmap to remove false positives.
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the result of thresholding:
 
-### Here are 10 frames and their corresponding heatmaps:
+### Here are 6 frames and their corresponding heatmaps:
 
-![alt text][image5]
+![alt text][image13]
 
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image12]
+### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all 6 frames:
+![alt text][image15]
 
-### Here the result after applying thresholds to remove false positives
-![alt text][image11]
+### Here the resulting bounding boxes are drawn onto the last frame in the series:
+
+![alt text][image16]
 
 
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 My process was incremental. Each step built upon the last one and it helped troubleshooting and debugging.
 
