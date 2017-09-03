@@ -27,17 +27,18 @@ The goals / steps of this project are the following:
 [image14]: ./writeup_media/spatial_bin.png
 [image15]: ./writeup_media/labels_result.png
 [image16]: ./writeup_media/last_frame.png
+[image17]: ./writeup_media/example_pipeline_working.png
 
 [imageX]: ./writeup_media/.png
 
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
 You're reading it!
 
@@ -68,6 +69,7 @@ I tried various combinations of parameters and toyed with orientation, pixels pe
 I trained a linear SVM using spatial binning, color histograms, and HOG. In Step 5 I extracted features from the data (split into train and test sets) and I scaled and trained them.   
 
 ![alt text][image14]
+![alt text][image1]
 
 ### Sliding Window Search
 
@@ -79,9 +81,9 @@ In Step 7 I implemented sliding window search. I played around with different sc
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on two scales using LUV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
-![alt text][image5]
+![alt text][image17]
 ---
 
 ### Video Implementation
@@ -94,7 +96,7 @@ Here's a [link to my video result](./project_output.mp4)
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
-I then applied thresholding to the heatmap to remove false positives.
+I then applied thresholding to the heatmap to remove false positives. I also used combining heat maps from the last 10 frames in order to get a better box fit and remove false positives.
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the result of thresholding:
 
