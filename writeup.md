@@ -23,10 +23,10 @@ The goals / steps of this project are the following:
 [image10]: ./writeup_media/test_image_with_windows2.png
 [image11]: ./writeup_media/test_images_heat_maps_threshold.png
 [image12]: ./writeup_media/test_images_heat_maps.png
-[image13]: ./writeup_media/time_images_heat_threshold_combo2.png
+[image13]: ./writeup_media/time_images_heat_threshold_combo3.png
 [image14]: ./writeup_media/spatial_bin.png
-[image15]: ./writeup_media/labels_result.png
-[image16]: ./writeup_media/last_frame.png
+[image15]: ./writeup_media/labels_result2.png
+[image16]: ./writeup_media/last_frame2.png
 [image17]: ./writeup_media/example_pipeline_working.png
 
 [imageX]: ./writeup_media/.png
@@ -75,13 +75,13 @@ I trained a linear SVM using spatial binning, and HOG. In Step 5 I extracted fea
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-In Step 7 I implemented sliding window search. I played around with different scales and overlapping. I found 64, 96, 128 to be the best window sizes and set up the areas of the image to search accordingly (lower half of the image). 
+In Step 7 I implemented sliding window search. I played around with different scales and overlapping. I found [1.2, 1.8] to be the best window sizes and set up the areas of the image to search accordingly (lower half of the image). 
 
 ![alt text][image8]
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on two scales using YUV 3-channel HOG features plus spatially binned color in the feature vector, which provided a nice result.  Here are some example images:
 
 ![alt text][image17]
 ---
