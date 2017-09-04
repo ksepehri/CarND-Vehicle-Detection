@@ -27,7 +27,7 @@ The goals / steps of this project are the following:
 [image14]: ./writeup_media/spatial_bin.png
 [image15]: ./writeup_media/labels_result2.png
 [image16]: ./writeup_media/last_frame2.png
-[image17]: ./writeup_media/example_pipeline_working.png
+[image17]: ./writeup_media/example_pipeline_working2.png
 
 [imageX]: ./writeup_media/.png
 
