@@ -75,7 +75,7 @@ I trained a linear SVM using spatial binning, and HOG. In Step 5 I extracted fea
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-In Step 7 I implemented sliding window search. I played around with different scales and overlapping. I found [1.2, 1.8] to be the best window sizes and set up the areas of the image to search accordingly (lower half of the image). 
+In Step 7 I implemented sliding window search. I played around with different scales and overlapping. I found [1, 1.8] to be the best window sizes and set up the areas of the image to search accordingly (lower half of the image). 
 
 ![alt text][image8]
 
